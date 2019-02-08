@@ -10,6 +10,7 @@ import (
 
 func main() {
 	total := 0
+	freqs := map[int]bool{}
 	inputFile, _ := filepath.Abs("./testInput")
 	file, err := os.Open(inputFile)
 	if err != nil {
@@ -19,9 +20,13 @@ func main() {
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
+		freqs[total] = true
 		curString := scanner.Text()
 		curInt, _ := strconv.Atoi(curString)
 		total += curInt
+		if _, ok := freqs[total]; ok {
+			fmt.Printf("%d\n", total)
+		}
 	}
 	fmt.Printf("total: %d\n", total)
 }
