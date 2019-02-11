@@ -28,6 +28,5 @@ func main() {
 			fmt.Printf("%d\n", total)
 		}
 	}
-	//test
 	fmt.Printf("total: %d\n", total)
 }
