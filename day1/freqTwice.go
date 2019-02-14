@@ -18,15 +18,27 @@ func main() {
 	}
 	defer file.Close()
 
+	// get input array
+	var intArray []int
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		freqs[total] = true
 		curString := scanner.Text()
 		curInt, _ := strconv.Atoi(curString)
-		total += curInt
+		intArray = append(intArray, curInt)
+	}
+
+	// hack--append it onto itself for repetition
+	for i := 0; i < 10; i++ {
+		intArray = append(intArray, intArray...)
+	}
+
+	// hope that the first duplicate frequency is within the 10 repetitions
+	for _, thisInt := range intArray {
+		freqs[total] = true
+		total += thisInt
 		if _, ok := freqs[total]; ok {
 			fmt.Printf("%d\n", total)
+			break
 		}
 	}
-	fmt.Printf("total: %d\n", total)
 }
