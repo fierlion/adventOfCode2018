@@ -45,14 +45,12 @@ func reducePolymer(strIn string) string {
 		reacted := false
 		for i := 1; i < len(strIn); i++ {
 			if isReaction(strIn[i-1], strIn[i]) {
-				strIn = strings.Replace(strIn, strIn[i-1:i+1], "--", 1)
+				strIn = strings.Replace(strIn, strIn[i-1:i+1], "", 1)
 				reacted = true
 				i += 1
 			}
 		}
-		if reacted {
-			strIn = strings.Replace(strIn, "-", "", -1)
-		} else {
+		if !reacted {
 			return strIn
 		}
 	}
